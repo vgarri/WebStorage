@@ -1,5 +1,5 @@
 console.log("hola");
-let usuarios = [{},{},{},{}];
+let usuarios = [...{}];
 //recoger los datos del formulario
 
 // JSON.stringify()
@@ -16,8 +16,31 @@ const url = event.target.url.value;
 // localStorage.setItem("mensaje",mensaje);
 // localStorage.setItem("url", url);
 console.log(name,email,mensaje,url);
-});
+localStorage.setItem(
+    "usuario",
+    JSON.stringify({
+      nombre: name,
+      email: email,
+      mensaje: mensaje,
+      url: url
+    })
+  );
+localStorage.getItem("usuario");
+//stringify, push y luego set item 
+//const contactosJson = JSON.stringify
 
+});
+document.getElementById("borrarTodo").addEventListener("click", function () {
+    let confirmacion = confirm("Estás seguro?")
+    
+    if(confirmacion){
+        localStorage.removeItem("usuario");
+        localStorage.clear();
+       alert("Todos los usuarios han sido borrados");
+    }
+ 
+
+});
 
 
 
