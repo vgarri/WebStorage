@@ -18,25 +18,21 @@ for (let i = 0; i < 4; i++) {
     li.id=(`li-${i+1}`);
 }
 
-let li = document.createElement("li");
-document.querySelector("ol").appendChild(li);
+
 let textoNombre = document.createTextNode(JSON.stringify(name));
-document.querySelector("li").appendChild(textoNombre);
+document.getElementById("li-1").appendChild(textoNombre);
 //por id??? deberian printearse ordenados en la lista
-//document.getElementById("li#0").appendChild(textoNombre);
+document.getElementById("li-2").appendChild(textoNombre);
 let textoEmail = document.createTextNode(JSON.stringify(email));
-document.querySelector("li").appendChild(textoEmail);
+document.getElementById("li-3").appendChild(textoEmail);
 let textoMensaje = document.createTextNode(JSON.stringify(mensaje));
-document.querySelector("li").appendChild(textoMensaje);
+document.getElementById("li-4").appendChild(textoMensaje);
 //creamos la imagen
 let img = document.createElement("img")
 document.querySelector("div1").appendChild(img);
 let src = document.createTextNode(JSON.stringify(url));
-img.src=src;
-// localStorage.setItem("name",name);
-// localStorage.setItem("email",email);
-// localStorage.setItem("mensaje",mensaje);
-// localStorage.setItem("url", url);
+img.src="./Ejemplo.png";
+
 console.log(name,email,mensaje,url);
 let objeto =
     {
@@ -62,24 +58,27 @@ document.getElementById("borrarTodo").addEventListener("click", function () {
         localStorage.clear();
        alert("Todos los usuarios han sido borrados");
     }
- 
+    
 
 });
 document.getElementById("borrarContacto").addEventListener("click", function () {
- let contactoBorrar = prompt("introduce aquí el contacto que se borrará");
-//     function deleteContact(index) {
-//     const contacts = getContacts();
-//     contacts.splice(index, 1);
-//     localStorage.setItem("contacts", JSON.stringify(contacts));
-//     loadContacts(); // Actualizar la lista
-//}
+ let contactoBorrar = prompt("introduce aquí el nombre del contacto que se borrará");
+    if (Object.values(usuarios).includes(JSON.stringify(contactoBorrar))){
+        for (let j = 0; j < usuarios.length; j++) {
+            if (JSON.parse(contactoBorrar) === Object.values(usuarios)[j]){
+                Object.values(usuarios)[j] === 0;
+            }
+            
+        }
+    }
+ alert(`Contacto: ${contactoBorrar} ha sido eliminado`);
 });
 document.getElementById("borrarDOM").addEventListener("click", function () {
     let confirmacion = confirm("Estás seguro?");
     
     if(confirmacion){
         
-        const div1 = document.querySelector("ol");
+        const div1 = document.querySelector("li");
         div1.remove();
         alert("DOM borrado");
     }

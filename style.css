@@ -5,3 +5,30 @@
 div1{
     display: flex;
 }
+input[type="text"],
+input[type="email"],
+input[type="url"],
+input[type="submit"],
+
+textarea {
+  width: 50%;
+  height: 20px;
+  border-radius: 20px;
+  padding: 8px;
+}
+form{
+display: flex;
+  width: 85%;
+  flex-direction: column;
+  justify-content: justify;
+  align-items: center;
+  text-align: center;
+}
+button{
+    padding: 5px;
+   margin: 0 auto;
+}
+img{
+    width: 70px;
+    height: auto;
+}
