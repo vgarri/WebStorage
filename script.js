@@ -11,17 +11,28 @@ const name = event.target.nombre.value;
 const email = event.target.email.value;
 const mensaje = event.target.mensaje.value;
 const url = event.target.url.value;
+document.createElement("ol");
+for (let i = 0; i < 4; i++) {
+    let li= document.createElement("li");
+    document.querySelector("ol").appendChild(li);
+    li.id=(`li-${i+1}`);
+}
 
-let p = document.createElement("p");
-document.querySelector("div1").appendChild(p);
+let li = document.createElement("li");
+document.querySelector("ol").appendChild(li);
 let textoNombre = document.createTextNode(JSON.stringify(name));
-document.querySelector("p").appendChild(textoNombre);
+document.querySelector("li").appendChild(textoNombre);
+//por id??? deberian printearse ordenados en la lista
+//document.getElementById("li#0").appendChild(textoNombre);
 let textoEmail = document.createTextNode(JSON.stringify(email));
-document.querySelector("p").appendChild(textoEmail);
+document.querySelector("li").appendChild(textoEmail);
 let textoMensaje = document.createTextNode(JSON.stringify(mensaje));
-document.querySelector("p").appendChild(textoMensaje);
-let textoURL = document.createTextNode(JSON.stringify(url));
-document.querySelector("p").appendChild(textoURL);
+document.querySelector("li").appendChild(textoMensaje);
+//creamos la imagen
+let img = document.createElement("img")
+document.querySelector("div1").appendChild(img);
+let src = document.createTextNode(JSON.stringify(url));
+img.src=src;
 // localStorage.setItem("name",name);
 // localStorage.setItem("email",email);
 // localStorage.setItem("mensaje",mensaje);
@@ -56,7 +67,7 @@ document.getElementById("borrarTodo").addEventListener("click", function () {
 });
 document.getElementById("borrarContacto").addEventListener("click", function () {
  let contactoBorrar = prompt("introduce aquí el contacto que se borrará");
-//  function deleteContact(index) {
+//     function deleteContact(index) {
 //     const contacts = getContacts();
 //     contacts.splice(index, 1);
 //     localStorage.setItem("contacts", JSON.stringify(contacts));
@@ -64,13 +75,13 @@ document.getElementById("borrarContacto").addEventListener("click", function () 
 //}
 });
 document.getElementById("borrarDOM").addEventListener("click", function () {
-    let confirmacion = confirm("Estás seguro?")
+    let confirmacion = confirm("Estás seguro?");
     
     if(confirmacion){
         
-        const element = document.querySelector("p");
-        element.remove()
-        alert("clear");
+        const div1 = document.querySelector("ol");
+        div1.remove();
+        alert("DOM borrado");
     }
  
 
