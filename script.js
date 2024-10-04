@@ -1,5 +1,9 @@
+//hacer un if para ver si existe el localstorage
+//CRUD
 console.log("hola");
 let usuarios = [];
+
+localStorage.setItem("Contactos",JSON.stringify([]));//inicializar variables 
 //recoger los datos del formulario
 
 // JSON.stringify()
@@ -11,22 +15,27 @@ const name = event.target.nombre.value;
 const email = event.target.email.value;
 const mensaje = event.target.mensaje.value;
 const url = event.target.url.value;
-document.createElement("ol");
+//para pintar en el dom
 for (let i = 0; i < 4; i++) {
     let li= document.createElement("li");
-    document.querySelector("ol").appendChild(li);
-    li.id=(`li-${i+1}`);
+    document.querySelector("ul").appendChild(li);
+    li.id=(`li-${i}`);
+    let textoNombre = document.createTextNode(name);
+    document.getElementById(`li-${i}`).appendChild(textoNombre);
+//por id??? deberian printearse ordenados en la lista
+    document.getElementById(`li-${i}`).appendChild(textoNombre);
+    let textoEmail = document.createTextNode(email);
+    document.getElementById(`li-${i}`).appendChild(textoEmail);
+    let textoMensaje = document.createTextNode(mensaje);
+    document.getElementById(`li-${i}`).appendChild(textoMensaje);
+    // document.createElement("button")
+    
+    // let textotarjeta = document.createTextNode("borrar tarjeta")
+    // document.querySelector("button").appendChild(textotarjeta);
 }
 
 
-let textoNombre = document.createTextNode(JSON.stringify(name));
-document.getElementById("li-1").appendChild(textoNombre);
-//por id??? deberian printearse ordenados en la lista
-document.getElementById("li-2").appendChild(textoNombre);
-let textoEmail = document.createTextNode(JSON.stringify(email));
-document.getElementById("li-3").appendChild(textoEmail);
-let textoMensaje = document.createTextNode(JSON.stringify(mensaje));
-document.getElementById("li-4").appendChild(textoMensaje);
+
 //creamos la imagen
 let img = document.createElement("img")
 document.querySelector("div1").appendChild(img);
@@ -42,7 +51,7 @@ let objeto =
       url: url
     }
 
-
+//aqui se guardan los objetos en el array de objetos
 usuarios.push(objeto);
 localStorage.setItem("Contactos",JSON.stringify(usuarios))
 console.log(usuarios);
@@ -53,8 +62,7 @@ document.getElementById("borrarTodo").addEventListener("click", function () {
     let confirmacion = confirm("Estás seguro?")
     
     if(confirmacion){
-        localStorage.removeItem("usuario");
-        usuarios.length = 0;
+        
         localStorage.clear();
        alert("Todos los usuarios han sido borrados");
     }
@@ -62,6 +70,8 @@ document.getElementById("borrarTodo").addEventListener("click", function () {
 
 });
 document.getElementById("borrarContacto").addEventListener("click", function () {
+    //se puede hacer con un filter
+    //leer de la web,filtrar,quitar, actualizar y volver a subir
  let contactoBorrar = prompt("introduce aquí el nombre del contacto que se borrará");
     if (Object.values(usuarios).includes(JSON.stringify(contactoBorrar))){
         for (let j = 0; j < usuarios.length; j++) {
@@ -78,10 +88,11 @@ document.getElementById("borrarDOM").addEventListener("click", function () {
     
     if(confirmacion){
         
-        const div1 = document.querySelector("li");
+        const div1 = document.querySelector("ul");
         div1.remove();
         alert("DOM borrado");
     }
  
 
 });
+//
