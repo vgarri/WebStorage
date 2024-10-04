@@ -96,3 +96,15 @@ document.getElementById("borrarDOM").addEventListener("click", function () {
 
 });
 //
+document.getElementById("Editar").addEventListener("click", function () {
+    let contactoEditar = prompt("introduce aquí el nombre del contacto que deseas editar");
+    
+
+
+
+
+
+
+
+
+});
