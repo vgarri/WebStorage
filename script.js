@@ -29,9 +29,10 @@ document.querySelector("form").addEventListener("submit", function (event) {
 function pintarUser(contact){
     let ul = document.querySelector("ul");
     let li = document.createElement("li");
+    //creamos la imagen
     let img = document.createElement("img");
     img.src="./Ejemplo.png";
-    let src = document.createTextNode(JSON.stringify(url));
+    
 
     let nombre1 = document.createElement("p");
     nombre1.textContent = `Nombre: ${contact.nombre}`;
@@ -43,7 +44,7 @@ function pintarUser(contact){
     mensaje1.textContent = `Mensaje: ${contact.mensaje}`;
 
     let imagen1 = document.createElement("p");
-    imagen1.textContent = `Imagen de ${contact.nombre}:`
+    imagen1.textContent = `Imagen de ${contact.nombre}`
 
     // Unimos todos los p al li
     li.appendChild(nombre1);
@@ -53,19 +54,7 @@ function pintarUser(contact){
     li.appendChild(img);
     // Unimos el li al ul
     ul.appendChild(li);
-
-    //creamos la imagen
-  
-    
-    
-    
 }
-
-
-
-
-
-
 
 function guardarUser(contact) {
     contacts.push(contact);
@@ -77,24 +66,6 @@ function updateUser(contacts){
     localStorage.setItem("Contactos", JSON.stringify(contacts));
     
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 document.getElementById("borrarTodo").addEventListener("click", function () {
     let confirmacion = confirm("Estás seguro?")
@@ -111,7 +82,7 @@ document.getElementById("borrarContacto").addEventListener("click", function () 
     //se puede hacer con un filter
     //leer de la web,filtrar,quitar, actualizar y volver a subir
  let contactoBorrar = prompt("introduce aquí el nombre del contacto que se borrará");
-    if (Object.values(contacts).includes(JSON.stringify(contactoBorrar))){
+    if (Object.values(usuarios).includes(JSON.stringify(contactoBorrar))){
         for (let j = 0; j < usuarios.length; j++) {
             if (JSON.parse(contactoBorrar) === Object.values(usuarios)[j]){
                 Object.values(usuarios)[j] === 0;

@@ -9,7 +9,9 @@ body{
     rgb(149, 255, 236)
   );
   background-repeat: no-repeat;
-  background: cover;
+  background-size: cover;
+  background-position: center;
+  height: 100%;
 }
 
 
