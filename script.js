@@ -79,18 +79,18 @@ document.getElementById("borrarTodo").addEventListener("click", function () {
 
 });
 document.getElementById("borrarContacto").addEventListener("click", function () {
-    //se puede hacer con un filter
-    //leer de la web,filtrar,quitar, actualizar y volver a subir
- let contactoBorrar = prompt("introduce aquí el nombre del contacto que se borrará");
-    if (Object.values(usuarios).includes(JSON.stringify(contactoBorrar))){
-        for (let j = 0; j < usuarios.length; j++) {
-            if (JSON.parse(contactoBorrar) === Object.values(usuarios)[j]){
-                Object.values(usuarios)[j] === 0;
-            }
-            
-        }
+   let contactos = [localStorage.getItem(JSON.parse(JSON.stringify(contacts)))];
+ let emailBorrar = prompt("introduce aquí el email del contacto que se borrará");
+    for(let i=0; i < contactos.length; i++) {
+        if(contactos[i] == emailBorrar){
+        //contactos.splice(i,1);
+        delete(contactos[i]);
+        
     }
- alert(`Contacto: ${contactoBorrar} ha sido eliminado`);
+    updateUser(contactos);
+ }
+    
+ alert(`El contacto con email: ${emailBorrar} ha sido eliminado`);
 });
 document.getElementById("borrarDOM").addEventListener("click", function () {
     let confirmacion = confirm("Estás seguro?");
