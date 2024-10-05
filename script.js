@@ -1,62 +1,100 @@
 //hacer un if para ver si existe el localstorage
 //CRUD
 console.log("hola");
-let usuarios = [];
+let contacts = [];
+
 
 localStorage.setItem("Contactos",JSON.stringify([]));//inicializar variables 
 //recoger los datos del formulario
-
-// JSON.stringify()
-// JSON.parse()
 document.querySelector("form").addEventListener("submit", function (event) {
     event.preventDefault();
 
-const name = event.target.nombre.value;
-const email = event.target.email.value;
-const mensaje = event.target.mensaje.value;
-const url = event.target.url.value;
-//para pintar en el dom
-for (let i = 0; i < 4; i++) {
-    let li= document.createElement("li");
-    document.querySelector("ul").appendChild(li);
-    li.id=(`li-${i}`);
-    let textoNombre = document.createTextNode(name);
-    document.getElementById(`li-${i}`).appendChild(textoNombre);
-//por id??? deberian printearse ordenados en la lista
-    document.getElementById(`li-${i}`).appendChild(textoNombre);
-    let textoEmail = document.createTextNode(email);
-    document.getElementById(`li-${i}`).appendChild(textoEmail);
-    let textoMensaje = document.createTextNode(mensaje);
-    document.getElementById(`li-${i}`).appendChild(textoMensaje);
-    // document.createElement("button")
+    const name = event.target.nombre.value;
+    const email = event.target.email.value;
+    const mensaje = event.target.mensaje.value;
+    const url = event.target.url.value;
+    //Se guarda en contact
     
-    // let textotarjeta = document.createTextNode("borrar tarjeta")
-    // document.querySelector("button").appendChild(textotarjeta);
+    let contact =
+    {
+    nombre: name,
+    email: email,
+    mensaje: mensaje,
+    url: url
+    }
+    pintarUser(contact);
+    guardarUser(contact);
+});
+//function para pintar en tarjetitas
+function pintarUser(contact){
+    let ul = document.querySelector("ul");
+    let li = document.createElement("li");
+    let img = document.createElement("img");
+    img.src="./Ejemplo.png";
+    let src = document.createTextNode(JSON.stringify(url));
+
+    let nombre1 = document.createElement("p");
+    nombre1.textContent = `Nombre: ${contact.nombre}`;
+
+    let email1 = document.createElement("p");
+    email1.textContent = `Email: ${contact.email}`;
+
+    let mensaje1 = document.createElement("p");
+    mensaje1.textContent = `Mensaje: ${contact.mensaje}`;
+
+    let imagen1 = document.createElement("p");
+    imagen1.textContent = `Imagen de ${contact.nombre}:`
+
+    // Unimos todos los p al li
+    li.appendChild(nombre1);
+    li.appendChild(email1);
+    li.appendChild(mensaje1);
+    li.appendChild(imagen1);
+    li.appendChild(img);
+    // Unimos el li al ul
+    ul.appendChild(li);
+
+    //creamos la imagen
+  
+    
+    
+    
 }
 
 
 
-//creamos la imagen
-let img = document.createElement("img")
-document.querySelector("div1").appendChild(img);
-let src = document.createTextNode(JSON.stringify(url));
-img.src="./Ejemplo.png";
 
-console.log(name,email,mensaje,url);
-let objeto =
-    {
-      nombre: name,
-      email: email,
-      mensaje: mensaje,
-      url: url
-    }
 
-//aqui se guardan los objetos en el array de objetos
-usuarios.push(objeto);
-localStorage.setItem("Contactos",JSON.stringify(usuarios))
-console.log(usuarios);
 
-});
+
+function guardarUser(contact) {
+    contacts.push(contact);
+    // Transformar el array a String y subirlo a Web Storage
+    updateUser(contacts);
+}
+
+function updateUser(contacts){
+    localStorage.setItem("Contactos", JSON.stringify(contacts));
+    
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 document.getElementById("borrarTodo").addEventListener("click", function () {
     let confirmacion = confirm("Estás seguro?")
@@ -73,7 +111,7 @@ document.getElementById("borrarContacto").addEventListener("click", function () 
     //se puede hacer con un filter
     //leer de la web,filtrar,quitar, actualizar y volver a subir
  let contactoBorrar = prompt("introduce aquí el nombre del contacto que se borrará");
-    if (Object.values(usuarios).includes(JSON.stringify(contactoBorrar))){
+    if (Object.values(contacts).includes(JSON.stringify(contactoBorrar))){
         for (let j = 0; j < usuarios.length; j++) {
             if (JSON.parse(contactoBorrar) === Object.values(usuarios)[j]){
                 Object.values(usuarios)[j] === 0;
@@ -98,7 +136,7 @@ document.getElementById("borrarDOM").addEventListener("click", function () {
 //
 document.getElementById("Editar").addEventListener("click", function () {
     let contactoEditar = prompt("introduce aquí el nombre del contacto que deseas editar");
-    
+
 
 
 

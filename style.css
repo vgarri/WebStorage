@@ -2,6 +2,17 @@
     font-family:Helvetica, sans-serif;
 }
 
+body{
+  background-image: linear-gradient(
+    150deg,
+    rgb(250, 196, 234),
+    rgb(149, 255, 236)
+  );
+  background-repeat: no-repeat;
+  background: cover;
+}
+
+
 div1{
     display: flex;
 }
@@ -18,7 +29,7 @@ textarea {
 }
 form{
 display: flex;
-  width: 85%;
+  width: 100%;
   flex-direction: column;
   height: fit-content;
   
@@ -27,7 +38,7 @@ display: flex;
 }
 form>div{
   display: flex;
-  width: 85%;
+  width: 100%;
   flex-direction: column;
   align-items: center;
   gap: 20px;
@@ -45,4 +56,34 @@ section{
   display: flex;
   justify-content: center;
   margin: 0 auto;
+}
+ul{
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+li{
+  list-style: none;
+  background: rgb(161, 255, 235);
+  padding: 20px;
+  border-radius: 10px;
+  border-color: black;
+  border-width: 1px;
+  border-style: solid;
+}
+
+.botonera{
+  display: flex;
+ 
+  gap: 20px;
+
+}
+section>button{
+  border-radius: 10px;
+  border-color: black;
+  border-width: 1px;
+  border-style: solid;
+  padding: 12px;
 }
