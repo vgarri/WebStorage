@@ -1,7 +1,10 @@
 //hacer un if para ver si existe el localstorage
 //CRUD
-
 let contacts = [];
+// if (contacts.length === 0){
+//     contacts = [];
+// }
+
 
 //comprobar si habia datos etc.
 localStorage.setItem("Contactos",JSON.stringify([]));//inicializar variables 
@@ -23,7 +26,8 @@ document.querySelector("form").addEventListener("submit", function (event) {
         url: url
     }
     pintarUser(contact);
-    guardarUser(contact);
+    
+    updateUser(contacts);
 });
 //function para pintar en tarjetitas
 function pintarUser(contact) {
@@ -90,8 +94,10 @@ document.getElementById("borrarContacto").addEventListener("click", function () 
             
             console.log(contactos);
         }
-        updateUser(contactos);
+       
+        
     }
+    updateUser(contactos);
 
     alert(`El contacto con email: ${emailBorrar} ha sido eliminado`);
 });
