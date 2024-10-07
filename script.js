@@ -1,9 +1,9 @@
 //hacer un if para ver si existe el localstorage
 //CRUD
-console.log("hola");
+
 let contacts = [];
 
-
+//comprobar si habia datos etc.
 localStorage.setItem("Contactos",JSON.stringify([]));//inicializar variables 
 //recoger los datos del formulario
 document.querySelector("form").addEventListener("submit", function (event) {
@@ -14,25 +14,25 @@ document.querySelector("form").addEventListener("submit", function (event) {
     const mensaje = event.target.mensaje.value;
     const url = event.target.url.value;
     //Se guarda en contact
-    
+
     let contact =
     {
-    nombre: name,
-    email: email,
-    mensaje: mensaje,
-    url: url
+        nombre: name,
+        email: email,
+        mensaje: mensaje,
+        url: url
     }
     pintarUser(contact);
     guardarUser(contact);
 });
 //function para pintar en tarjetitas
-function pintarUser(contact){
+function pintarUser(contact) {
     let ul = document.querySelector("ul");
     let li = document.createElement("li");
     //creamos la imagen
     let img = document.createElement("img");
-    img.src="./Ejemplo.png";
-    
+    img.src = "./Ejemplo.png";
+
 
     let nombre1 = document.createElement("p");
     nombre1.textContent = `Nombre: ${contact.nombre}`;
@@ -62,58 +62,53 @@ function guardarUser(contact) {
     updateUser(contacts);
 }
 
-function updateUser(contacts){
+function updateUser(contacts) {
     localStorage.setItem("Contactos", JSON.stringify(contacts));
-    
+
 }
 
 document.getElementById("borrarTodo").addEventListener("click", function () {
     let confirmacion = confirm("Estás seguro?")
-    
-    if(confirmacion){
-        
+
+    if (confirmacion) {
+
         localStorage.clear();
-       alert("Todos los usuarios han sido borrados");
+        alert("Todos los usuarios han sido borrados");
     }
-    
+
 
 });
 document.getElementById("borrarContacto").addEventListener("click", function () {
-   let contactos = [localStorage.getItem(JSON.parse(JSON.stringify(contacts)))];
- let emailBorrar = prompt("introduce aquí el email del contacto que se borrará");
-    for(let i=0; i < contactos.length; i++) {
-        if(contactos[i] == emailBorrar){
-        //contactos.splice(i,1);
-        delete(contactos[i]);
-        
+    let contactos = JSON.parse(localStorage.getItem("Contactos"));
+    console.log(contactos);
+    let emailBorrar = prompt("introduce aquí el email del contacto que se borrará");
+    console.log(emailBorrar);
+    for (let i = 0; i < contactos.length; i++) {
+        console.log(contactos[i].email)
+        if (contactos[i].email == emailBorrar) {
+            contactos = contactos.filter(contac => contac.email!== emailBorrar);
+            
+            console.log(contactos);
+        }
+        updateUser(contactos);
     }
-    updateUser(contactos);
- }
-    
- alert(`El contacto con email: ${emailBorrar} ha sido eliminado`);
+
+    alert(`El contacto con email: ${emailBorrar} ha sido eliminado`);
 });
 document.getElementById("borrarDOM").addEventListener("click", function () {
     let confirmacion = confirm("Estás seguro?");
-    
-    if(confirmacion){
-        
+
+    if (confirmacion) {
+
         const div1 = document.querySelector("ul");
         div1.remove();
         alert("DOM borrado");
     }
- 
+
 
 });
 //
 document.getElementById("Editar").addEventListener("click", function () {
     let contactoEditar = prompt("introduce aquí el nombre del contacto que deseas editar");
-
-
-
-
-
-
-
-
 
 });
